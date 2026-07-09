@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shreyas Chavan · Portfolio</title>
+  <meta name="description" content="Portfolio of Shreyas Chavan — early-career full-stack developer from Pune with UI-focused web projects and an AI/ML internship at Krutanic Technologies." />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0f172a;
+      --bg-soft:#0b1220;
+      --surface:#020617;
+      --surface-alt:#0b1220;
+      --border:#1e293b;
+      --accent:#38bdf8;
+      --accent-soft:#0ea5e9;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --faint:#64748b;
+      --radius-lg:1rem;
+      --radius-md:.75rem;
+      --radius-full:999px;
+      --shadow-md:0 22px 45px rgba(15,23,42,.75);
+      --font-display:"Cabinet Grotesk","Inter",system-ui,sans-serif;
+      --font-body:"Satoshi","Inter",system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      background:radial-gradient(circle at top left,#1f2937 0%,#020617 55%);
+      color:var(--text);
+      font:16px/1.6 var(--font-body);
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    p{margin:0;color:var(--muted);max-width:70ch}
+    h1,h2,h3{margin:0;font-family:var(--font-display);text-wrap:balance}
+    .container{
+      width:min(1120px,100% - 2rem);
+      margin:0 auto;
+      padding-block:3rem;
+    }
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1.5rem;
+      padding-block:1.5rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+    }
+    .brand-logo{
+      width:40px;height:40px;
+      border-radius:var(--radius-lg);
+      background:conic-gradient(from 160deg,#38bdf8,#6366f1,#ec4899,#22c55e,#38bdf8);
+      padding:2px;
+    }
+    .brand-logo-inner{
+      width:100%;height:100%;
+      border-radius:inherit;
+      background:radial-gradient(circle at 30% 20%,#1e293b,#020617 70%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#e5e7eb;
+      font-size:.9rem;
+      font-weight:600;
+    }
+    nav{
+      display:flex;
+      gap:1.5rem;
+      font-size:.9rem;
+      color:var(--faint);
+    }
+    nav a:hover{color:var(--text);}
+    .pill{
+      border-radius:var(--radius-full);
+      border:1px solid rgba(148,163,184,.4);
+      padding:.4rem .9rem;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--faint);
+    }
+    .hero{
+      margin-top:1.5rem;
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:2.5rem;
+      align-items:start;
+    }
+    .hero-main{
+      padding:2.2rem 2.4rem;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(160deg,rgba(15,23,42,.9),rgba(15,23,42,.98));
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:var(--shadow-md);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-main::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 12% 0%,rgba(56,189,248,.18),transparent 55%),
+        radial-gradient(circle at 88% 12%,rgba(129,140,248,.13),transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;display:grid;gap:1.3rem;}
+    .hero-title{
+      font-size:clamp(2.2rem,4vw,3.2rem);
+      letter-spacing:-.05em;
+    }
+    .hero-title span{
+      color:var(--accent-soft);
+    }
+    .hero-tagline{
+      font-size:1.05rem;
+      color:#cbd5f5;
+    }
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      margin-top:.5rem;
+    }
+    .hero-meta-item{
+      font-size:.8rem;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+    }
+    .dot{
+      width:6px;height:6px;
+      border-radius:50%;
+      background:#22c55e;
+    }
+    .hero-actions{
+      margin-top:1.5rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+    }
+    .btn{
+      border-radius:var(--radius-full);
+      padding:.7rem 1.1rem;
+      font-size:.9rem;
+      font-weight:600;
+      border:1px solid rgba(148,163,184,.4);
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#0ea5e9,#6366f1);
+      border:none;
+      color:#0b1220;
+    }
+    .btn-primary:hover{filter:brightness(1.08);}
+    .btn-secondary{
+      background:rgba(15,23,42,.7);
+    }
+    .hero-aside{
+      display:grid;
+      gap:1rem;
+    }
+    .card{
+      border-radius:var(--radius-lg);
+      background:var(--surface);
+      border:1px solid rgba(30,64,175,.55);
+      padding:1.4rem 1.6rem;
+    }
+    .card h2{
+      font-size:1.05rem;
+      margin-bottom:.4rem;
+    }
+    .stat-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:.75rem;
+      margin-top:.8rem;
+      font-size:.8rem;
+    }
+    .stat{
+      padding:.7rem .8rem;
+      border-radius:var(--radius-md);
+      background:var(--bg-soft);
+      border:1px solid rgba(51,65,85,.85);
+    }
+    .stat strong{
+      display:block;
+      font-size:.95rem;
+    }
+    .section{
+      margin-top:3rem;
+      display:grid;
+      gap:1.3rem;
+    }
+    .section-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:1.5rem;
+    }
+    .section-title{
+      font-size:1.4rem;
+      letter-spacing:-.03em;
+    }
+    .section-subtitle{
+      font-size:.9rem;
+      color:var(--faint);
+    }
+    .projects-grid{
+      display:grid;
+      grid-template-columns:1.15fr .9fr;
+      gap:1.8rem;
+    }
+    .project{
+      border-radius:var(--radius-lg);
+      background:var(--surface-alt);
+      border:1px solid rgba(30,64,175,.7);
+      padding:1.6rem 1.8rem;
+    }
+    .project h3{
+      font-size:1.1rem;
+      margin-bottom:.25rem;
+    }
+    .badge-row{
+      margin-top:.6rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+      font-size:.75rem;
+    }
+    .badge{
+      padding:.35rem .7rem;
+      border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.45);
+      color:var(--muted);
+    }
+    .project p{margin-top:.6rem;font-size:.9rem;}
+    .project-links{
+      margin-top:.9rem;
+      display:flex;
+      gap:.75rem;
+      font-size:.8rem;
+    }
+    .project-links a{
+      color:var(--accent);
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:1.8rem;
+    }
+    .list{
+      display:grid;
+      gap:.9rem;
+      font-size:.9rem;
+    }
+    .list-item-title{
+      font-weight:600;
+      color:#cbd5f5;
+    }
+    .list-item-body{
+      color:var(--muted);
+    }
+    .contact-card{
+      border-radius:var(--radius-lg);
+      background:linear-gradient(145deg,#0f172a,#020617);
+      border:1px solid rgba(148,163,184,.5);
+      padding:1.6rem 1.8rem;
+      display:grid;
+      gap:1rem;
+    }
+    .contact-links{
+      display:grid;
+      gap:.7rem;
+      font-size:.9rem;
+    }
+    .contact-pill{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:.75rem;
+      padding:.7rem 1rem;
+      border-radius:var(--radius-md);
+      border:1px solid rgba(148,163,184,.5);
+      background:rgba(15,23,42,.85);
+      color:var(--muted);
+    }
+    footer{
+      margin-top:3rem;
+      padding-block:1.5rem 2.5rem;
+      font-size:.8rem;
+      color:var(--faint);
+      border-top:1px solid rgba(30,64,175,.6);
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .projects-grid,.two-col{grid-template-columns:1fr;}
+      header{flex-direction:column;align-items:flex-start;}
+    }
+    @media (max-width:640px){
+      .hero-main{padding:1.6rem 1.4rem;}
+      .project{padding:1.4rem 1.3rem;}
+      .section-header{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">
+          <div class="brand-logo-inner">SC</div>
+        </div>
+        <div>
+          <strong>Shreyas Chavan</strong>
+          <div style="font-size:.8rem;color:var(--faint);">Full‑stack & UI‑focused web developer · Pune, India</div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-main">
+          <div class="hero-inner">
+            <div class="pill">Portfolio · Early‑career developer</div>
+            <h1 class="hero-title">
+              I build <span>practical web interfaces</span> that feel clean, responsive, and ready to ship.
+            </h1>
+            <p class="hero-tagline">
+              I’m Shreyas from Pune — focused on full‑stack projects where I own the front‑end structure,
+              styling, and implementation, not just the back‑end logic.
+            </p>
+            <p>
+              This page highlights selected work like an LMS platform, utilities, and AI/ML work at Krutanic Technologies,
+              all designed with simple, user‑friendly flows.
+            </p>
+            <div class="hero-meta">
+              <div class="hero-meta-item"><span class="dot"></span> Open to trainee / junior web roles</div>
+              <div class="hero-meta-item">Comfortable with React, Node.js, Django, MongoDB</div>
+              <div class="hero-meta-item">Interested in design‑adjacent tasks where UI quality matters</div>
+            </div>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">View key projects</a>
+              <a href="#contact" class="btn btn-secondary">Contact details</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-aside">
+          <div class="card">
+            <h2>Snapshot</h2>
+            <p>Mix of full‑stack work, UI decisions, and an AI/ML internship that sharpened my problem‑solving.</p>
+            <div class="stat-grid">
+              <div class="stat">
+                <strong>Full‑stack LMS</strong>
+                <span>Role‑based dashboards, responsive layouts, and clear navigation.</span>
+              </div>
+              <div class="stat">
+                <strong>Utility tools</strong>
+                <span>PWA calculator & video workflow interfaces for everyday use.</span>
+              </div>
+              <div class="stat">
+                <strong>Krutanic internship</strong>
+                <span>AI/ML work with a focus on applied problem‑solving and clean reporting.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-header">
+          <div>
+            <div class="pill">Selected projects</div>
+            <h2 class="section-title">Work that shows how I think about structure and UI.</h2>
+          </div>
+          <p class="section-subtitle">
+            These are strong examples for skills tests and junior roles because they connect visual decisions
+            with real product flows instead of just static mockups.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project">
+            <h3>Learning Management System</h3>
+            <p>
+              Full‑stack LMS platform with role‑based access, course views, and admin dashboards.
+              I handled the layout decisions, dashboard structure, navigation hierarchy, and responsive styling.
+            </p>
+            <div class="badge-row">
+              <span class="badge">React</span>
+              <span class="badge">Node.js</span>
+              <span class="badge">MongoDB</span>
+              <span class="badge">UI architecture</span>
+            </div>
+            <p>
+              The goal was to keep the interface simple enough for students and admins while supporting multiple content types,
+              progress tracking, and management workflows.
+            </p>
+            <div class="project-links">
+              <a href="#" aria-label="LMS project link placeholder">GitHub repo (add link)</a>
+              <a href="#" aria-label="LMS live link placeholder">Live demo (add link)</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>Camera store homepage concept</h3>
+            <p>
+              E‑commerce homepage for a camera store, designed for a skills test.
+              Includes mega menu, hero banner, product categories, featured items, promotional banner, SEO copy, and newsletter signup.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Design‑aware HTML/CSS</span>
+              <span class="badge">Homepage UX</span>
+              <span class="badge">Developer‑friendly layout</span>
+            </div>
+            <p>
+              Built to feel polished but not overly complex for developers to implement, with clear hierarchy and focused copy
+              around gear confidence, support, and discovery.
+            </p>
+            <div class="project-links">
+              <a href="#" aria-label="Camera homepage repo placeholder">GitHub repo (add link)</a>
+              <a href="#" aria-label="Camera homepage live link placeholder">GitHub Pages link (add link)</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="projects-grid" style="margin-top:1.8rem;">
+          <article class="project">
+            <h3>AI interview practice app</h3>
+            <p>
+              Lightweight web app that lets job seekers practice interview questions and receive feedback.
+              I focused on a clean single‑page flow with simple controls and readable feedback sections.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Product thinking</span>
+              <span class="badge">UX flow</span>
+              <span class="badge">Job‑seeker focus</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>PWA calculator & utility tools</h3>
+            <p>
+              Small tools built as progressive web apps, prioritizing speed, offline‑friendly behavior,
+              and clear layouts that work well on mobile and desktop.
+            </p>
+            <div class="badge-row">
+              <span class="badge">PWA</span>
+              <span class="badge">Responsive design</span>
+              <span class="badge">Utility UI</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-header">
+          <div>
+            <div class="pill">Experience</div>
+            <h2 class="section-title">Mix of project work and internship experience.</h2>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="project">
+            <h3>Krutanic Technologies · AI/ML Internship</h3>
+            <p>
+              Worked on AI/ML problems with a focus on real‑world use cases, reporting, and iteration.
+              The internship strengthened my ability to learn quickly, debug, and communicate technical decisions clearly.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Python & ML basics</span>
+              <span class="badge">Problem‑solving</span>
+              <span class="badge">Reporting</span>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3>Self‑directed web projects</h3>
+            <p>
+              Multiple self‑initiated projects spanning LMS and utilities, where I had to design the structure,
+              pick the stack, and deliver a working solution end‑to‑end.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Full‑stack builds</span>
+              <span class="badge">UI implementation</span>
+              <span class="badge">Deployment mindset</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-header">
+          <div>
+            <div class="pill">Skills</div>
+            <h2 class="section-title">What I’m comfortable using day‑to‑day.</h2>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="project">
+            <h3>Technical</h3>
+            <div class="list">
+              <div>
+                <div class="list-item-title">Front‑end</div>
+                <div class="list-item-body">HTML, CSS, basic Tailwind, React fundamentals, responsive layouts, component structure.</div>
+              </div>
+              <div>
+                <div class="list-item-title">Back‑end</div>
+                <div class="list-item-body">Node.js, Express, Django basics, working with MongoDB and REST APIs.</div>
+              </div>
+              <div>
+                <div class="list-item-title">Tooling & design</div>
+                <div class="list-item-body">Git/GitHub, VS Code, basic Adobe tools for asset prep, Figma familiarity for UI review.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3>Ways of working</h3>
+            <div class="list">
+              <div>
+                <div class="list-item-title">UI‑aware development</div>
+                <div class="list-item-body">I care about spacing, typography, and keeping flows simple for users.</div>
+              </div>
+              <div>
+                <div class="list-item-title">Rapid learning</div>
+                <div class="list-item-body">Comfortable learning new frameworks, tools, and test formats under deadlines.</div>
+              </div>
+              <div>
+                <div class="list-item-title">Communication</div>
+                <div class="list-item-body">I try to be clear about trade‑offs and think from the user’s perspective, not just the code.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div>
+            <div class="pill">Contact</div>
+            <h2 class="section-title">If you’d like to talk about a role or project.</h2>
+          </div>
+          <p class="section-subtitle">
+            These are the links I actually monitor regularly — email, LinkedIn, and GitHub.
+            Feel free to reach out about trainee, junior, or design‑adjacent web roles.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <p>Use this link in the skills test and update any project links above once you deploy them.</p>
+          <div class="contact-links">
+            <div class="contact-pill">
+              <span>Email</span>
+              <span>shreyaschavan.dev@gmail.com</span>
+            </div>
+            <a class="contact-pill" href="https://www.linkedin.com/in/shreyaschavan-dev/" target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+              <span>/in/shreyaschavan-dev</span>
+            </a>
+            <a class="contact-pill" href="https://github.com/shareyaschavan-pixel" target="_blank" rel="noopener noreferrer">
+              <span>GitHub</span>
+              <span>/shareyaschavan-pixel</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Designed as a straightforward portfolio for skills tests and junior web roles. Last updated 2026.</div>
+    </footer>
+  </div>
+</body>
+</html>
